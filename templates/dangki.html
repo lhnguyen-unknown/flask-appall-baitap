@@ -1,0 +1,43 @@
+{% extends "basechung.html" %}
+{% from "_form_helpers.html" import render_field %}
+
+{% block title %}Đăng ký tài khoản{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-3">
+    <div class="col-md-8 col-lg-5">
+        <div class="card shadow border-0 rounded-4 overflow-hidden">
+            <div class="card-header bg-dark bg-gradient text-white text-center p-4 border-0">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeDFCrQ8yfc6YYi_jPvRGFwSjJ9hcplkoGi2sjZYOkPg&s=10" alt="Logo" height="65" class="rounded-circle bg-white p-1 shadow mb-2">
+    <h3 class="fw-bold mb-0">Tạo Tài Khoản</h3>
+    <p class="text-white-50 small mb-0 mt-1">Gia nhập hệ thống bài tập của chúng tôi</p>
+</div>
+            <div class="card-body p-4 p-md-5">
+                <form method="POST" action="{{ url_for('dangki') }}" novalidate>
+                    {{ form.hidden_tag() }}
+
+                    <div class="vstack gap-2">
+                        {{ render_field(form.username) }}
+                        {{ render_field(form.email) }}
+                        {{ render_field(form.password) }}
+                        {{ render_field(form.confirm_password) }}
+                        
+                        <div class="mt-2 p-3 bg-light rounded-3 border">
+                            {{ render_field(form.agree) }}
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        {{ render_field(form.submit) }}
+                    </div>
+                </form>
+
+                <div class="text-center mt-4 pt-4 border-top">
+                    <span class="text-muted">Đã là thành viên?</span>
+                    <a href="{{ url_for('login') }}" class="text-decoration-none fw-bold text-dark ms-1">Đăng nhập tại đây</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Giới thiệu{% endblock %}
+
+{% block content %}
+    <div class="text-center mb-4">
+        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Logo" class="site-logo">
+    </div>
+    <p>Trang này được xây dựng nhằm minh họa cách sử dụng cấu trúc template cha-con và tính năng include các mảnh giao diện trong Flask.</p>
+{% endblock %}

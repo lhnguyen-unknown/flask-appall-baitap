@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 580" width="100%" height="100%">
+    <defs>
+        <style>
+            .bg { fill: #17428c; }
+            .shield-outer { fill: none; stroke: #ffffff; stroke-width: 6; }
+            .shield-inner { fill: none; stroke: #ffffff; stroke-width: 2; }
+            .text-vn, .text-en { fill: #ffffff; font-family: Arial, sans-serif; font-weight: bold; text-anchor: middle; }
+            .text-vn { font-size: 15px; letter-spacing: 1px; }
+            .text-en { font-size: 13px; letter-spacing: 0.5px; }
+            .divider { stroke: #ffffff; stroke-width: 2; }
+            .shape-c { fill: #ffffff; }
+            .gate { fill: #c8102e; }
+            .atom-orbit { fill: none; stroke: #ffffff; stroke-width: 2.5; }
+            .atom-core { fill: #c8102e; stroke: #ffffff; stroke-width: 1.5; }
+        </style>
+    </defs>
+
+    <!-- Nền xanh đặc trưng -->
+    <rect width="500" height="580" class="bg" rx="10" />
+
+    <!-- Khung khiên bên ngoài -->
+    <path d="M 250 540 L 110 440 C 95 350 95 180 110 130 L 250 90 L 390 130 C 405 180 405 350 390 440 Z" class="shield-outer" />
+    
+    <!-- Khung khiên bên trong -->
+    <path d="M 250 520 L 125 430 C 112 350 112 190 125 145 L 250 110 L 375 145 C 388 190 388 350 375 430 Z" class="shield-inner" />
+
+    <!-- Khu vực văn bản tên trường phía trên -->
+    <text x="250" y="165" class="text-vn">TRƯỜNG ĐẠI HỌC KHOA HỌC HUẾ</text>
+    <text x="250" y="190" class="text-en">HUE UNIVERSITY OF SCIENCES</text>
+    <line x1="140" y1="205" x2="360" y2="205" class="divider" />
+
+    <!-- Chữ C cách điệu và biểu tượng kiến trúc (Cổng thiên mụ / Đại nội) -->
+    <!-- Chữ C lớn lồng ghép -->
+    <path d="M 250 250 H 190 C 170 250 160 265 160 285 V 390 C 160 420 185 450 220 450 H 280 C 310 450 330 435 340 420 C 345 410 335 400 325 405 C 310 415 295 420 275 420 H 225 C 205 420 195 405 195 385 V 285 H 250 Z" class="shape-c" />
+    <path d="M 195 315 H 250 V 355 H 195 Z" class="shape-c" />
+
+    <!-- Biểu tượng kiến trúc màu đỏ ở giữa chữ C -->
+    <g transform="translate(210, 360)">
+        <polygon points="15,0 65,0 80,12 0,12" class="gate" />
+        <rect x="10" y="14" width="60" height="8" class="gate" />
+        <polygon points="5,24 75,24 85,34 -5,34" class="gate" />
+        <line x1="40" y1="0" x2="40" y2="34" stroke="#ffffff" stroke-width="2" />
+    </g>
+
+    <!-- Mô hình nguyên tử phía góc trên bên phải -->
+    <g transform="translate(350, 275)">
+        <ellipse cx="0" cy="0" rx="25" ry="10" class="atom-orbit" transform="rotate(30)" />
+        <ellipse cx="0" cy="0" rx="25" ry="10" class="atom-orbit" transform="rotate(-30)" />
+        <ellipse cx="0" cy="0" rx="25" ry="10" class="atom-orbit" transform="rotate(90)" />
+        <circle cx="0" cy="0" r="5" class="atom-core" />
+    </g>
+</svg>

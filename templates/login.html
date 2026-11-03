@@ -1,0 +1,50 @@
+{% extends "basechung.html" %}
+
+{% block title %}Đăng nhập hệ thống{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-3">
+    <div class="col-md-8 col-lg-5">
+        <div class="card shadow border-0 rounded-4 overflow-hidden">
+            <div class="card-header bg-primary bg-gradient text-white text-center p-4 border-0">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeDFCrQ8yfc6YYi_jPvRGFwSjJ9hcplkoGi2sjZYOkPg&s=10" alt="Logo" height="65" class="rounded-circle bg-white p-1 shadow mb-2">
+    <h3 class="fw-bold mb-0">Đăng Nhập</h3>
+    <p class="text-white-50 small mb-0 mt-1">Truy cập vào tài khoản của bạn</p>
+</div>
+            <div class="card-body p-4 p-md-5">
+                <form method="POST" action="{{ url_for('login') }}">
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold text-secondary">Tên đăng nhập</label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-person"></i></span>
+                            <input type="text" name="username" class="form-control border-start-0 ps-0 fs-6" placeholder="Nhập tài khoản..." value="{{ username }}" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold text-secondary">Mật khẩu</label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-key"></i></span>
+                            <input type="password" name="password" class="form-control border-start-0 ps-0 fs-6" placeholder="Nhập mật khẩu..." value="">
+                        </div>
+                    </div>
+
+                    <div class="mb-4 form-check d-flex align-items-center gap-2">
+                        <input type="checkbox" name="remember" class="form-check-input mt-0" id="remember" style="width: 1.2rem; height: 1.2rem;">
+                        <label class="form-check-label text-muted fw-medium" for="remember">Ghi nhớ phiên đăng nhập</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 fw-bold py-3 rounded-3 shadow-sm d-flex justify-content-center align-items-center gap-2 text-uppercase letter-spacing-1">
+                        <i class="bi bi-box-arrow-in-right fs-5"></i> Đăng nhập ngay
+                    </button>
+                </form>
+
+                <div class="text-center mt-4 pt-4 border-top">
+                    <span class="text-muted">Bạn chưa có tài khoản?</span>
+                    <a href="{{ url_for('dangki') }}" class="text-decoration-none fw-bold text-primary ms-1">Đăng ký mới</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

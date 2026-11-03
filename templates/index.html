@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Trang chủ{% endblock %}
+
+{% block content %}
+    <div class="p-4 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-3">
+            <h1 class="display-6 fw-bold">Chào mừng đến với hệ thống quản lý</h1>
+            <p class="col-md-8 fs-5">Trang chủ này tổng hợp các chức năng chính từ các phân hệ Giới thiệu, Liên hệ và Danh sách dữ liệu của ứng dụng.</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Giới thiệu dự án</h5>
+                    <p class="card-text">Tìm hiểu chi tiết về cấu trúc template cha-con, tính năng include các mảnh giao diện và kiến trúc Flask.</p>
+                    <a href="/about" class="btn btn-outline-primary btn-sm">Xem giới thiệu</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-danger">Thông tin liên hệ</h5>
+                    <p class="card-text">Gửi thông tin phản hồi, yêu cầu hỗ trợ hoặc kết nối với đội ngũ phát triển.</p>
+                    <a href="/contact" class="btn btn-outline-danger btn-sm">Liên hệ ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

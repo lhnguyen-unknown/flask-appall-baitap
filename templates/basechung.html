@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Hệ Thống Bài Tập Flask{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .navbar-custom {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .nav-link {
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+            border-radius: 6px;
+        }
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #ffffff !important;
+        }
+        .dropdown-menu {
+            border-top: 4px solid #0d6efd;
+            border-radius: 8px;
+        }
+        
+        .user-profile-link {
+            transition: background-color 0.2s ease;
+        }
+        .user-profile-link:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        main {
+            flex: 1;
+            padding-top: 2.5rem;
+            padding-bottom: 4rem;
+        }
+
+        .alert-custom {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .footer-custom {
+            background-color: #ffffff;
+            border-top: 1px solid #e9ecef;
+            padding: 1.5rem 0;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top py-2">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url_for('login') }}">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtoYaGqsRGvkfkmvKTZOMPSgMIg9vr1innmdYkdZyGRQ&s=10" alt="Logo" height="40" class="rounded bg-white p-1 shadow-sm">
+    </span>Phần mềm mã nguồn mở</span>
+</a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle px-3 {% if request.path in ['/bai1', '/', '/bai2', '/bai3'] %}active{% endif %}" href="#" id="menuBaiTap" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-grid-1x2 me-1"></i> Danh sách bài tập
+                        </a>
+                        <ul class="dropdown-menu shadow border-0 mt-2">
+                            <li>
+                                <a class="dropdown-item py-2 {% if request.path == '/bai1' or request.path == '/' %}active bg-primary text-white fw-medium{% endif %}" href="{{ url_for('bai1') }}">
+                                    <i class="bi bi-calculator me-2 text-primary {% if request.path == '/bai1' or request.path == '/' %}text-white{% endif %}"></i> Bài 1: Máy tính
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item py-2 {% if request.path == '/bai2' %}active bg-primary text-white fw-medium{% endif %}" href="{{ url_for('bai2') }}">
+                                    <i class="bi bi-journal-check me-2 text-primary {% if request.path == '/bai2' %}text-white{% endif %}"></i> Bài 2: Tính điểm học phần
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item py-2 {% if request.path == '/bai3' %}active bg-primary text-white fw-medium{% endif %}" href="{{ url_for('bai3') }}">
+                                    <i class="bi bi-heart-pulse me-2 text-primary {% if request.path == '/bai3' %}text-white{% endif %}"></i> Bài 3: Chỉ số BMI
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                    {% if session.get('user') %}
+                        <a href="{{ url_for('profile') }}" class="text-white text-decoration-none d-flex align-items-center gap-2 px-3 py-1 rounded user-profile-link">
+                            <img src="https://ui-avatars.com/api/?name={{ session.get('user') }}&background=ffffff&color=0d6efd&bold=true&rounded=true" alt="Avatar" width="35" height="35" class="shadow-sm">
+                            <span class="fw-semibold">{{ session.get('user') }}</span>
+                        </a>
+                        <form action="{{ url_for('logout') }}" method="POST" class="m-0">
+                            <button type="submit" class="btn btn-light btn-sm fw-semibold text-danger px-4 rounded-pill shadow-sm d-flex align-items-center gap-1">
+                                <i class="bi bi-box-arrow-right"></i> Thoát
+                            </button>
+                        </form>
+                    {% else %}
+                        <a href="{{ url_for('dangki') }}" class="btn btn-outline-light btn-sm fw-semibold px-4 rounded-pill">Đăng ký</a>
+                        <a href="{{ url_for('login') }}" class="btn btn-light btn-sm fw-bold text-primary px-4 rounded-pill shadow-sm d-flex align-items-center gap-1">
+                            <i class="bi bi-person-circle"></i> Đăng nhập
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-8 col-lg-6">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} alert-custom alert-dismissible fade show d-flex align-items-center gap-2" role="alert">
+                                {% if category == 'success' %}
+                                    <i class="bi bi-check-circle-fill fs-4 text-success"></i>
+                                {% elif category == 'danger' %}
+                                    <i class="bi bi-exclamation-triangle-fill fs-4 text-danger"></i>
+                                {% elif category == 'warning' %}
+                                    <i class="bi bi-exclamation-circle-fill fs-4 text-warning"></i>
+                                {% else %}
+                                    <i class="bi bi-info-circle-fill fs-4 text-info"></i>
+                                {% endif %}
+                                
+                                <div class="mb-0 fw-medium">{{ message }}</div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

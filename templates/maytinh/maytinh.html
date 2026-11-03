@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Máy tính cơ bản</title>
+    <style>
+        .form-group { margin-bottom: 15px; display: inline-block; vertical-align: top; }
+        .error { color: red; font-size: 13px; margin-top: 4px; display: block; }
+        .result { font-weight: bold; margin-top: 15px; font-size: 18px; color: green; }
+    </style>
+</head>
+<body>
+    <h2>Bài 1. Máy tính cơ bản</h2>
+
+    <form method="POST" action="">
+        <div class="form-group">
+            <label>a:</label><br>
+            <input type="text" name="a" value="{{ a }}">
+            {% if error_a %}
+                <span class="error">{{ error_a }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label>op:</label><br>
+            <select name="op">
+                <option value="+" {% if op == '+' %}selected{% endif %}>+</option>
+                <option value="-" {% if op == '-' %}selected{% endif %}>-</option>
+                <option value="*" {% if op == '*' %}selected{% endif %}>*</option>
+                <option value="/" {% if op == '/' %}selected{% endif %}>/</option>
+            </select>
+            {% if error_op %}
+                <span class="error">{{ error_op }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label>b:</label><br>
+            <input type="text" name="b" value="{{ b }}">
+            {% if error_b %}
+                <span class="error">{{ error_b }}</span>
+            {% endif %}
+        </div>
+
+        <br>
+        <button type="submit">Tính toán</button>
+    </form>
+
+    {% if result %}
+        <div class="result">
+            {{ result }}
+        </div>
+    {% endif %}
+</body>
+</html>

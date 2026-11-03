@@ -1,0 +1,65 @@
+{% extends "basechung.html" %}
+
+{% block title %}Bài 3 - Tính chỉ số BMI{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-3">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow border-0 rounded-4 overflow-hidden">
+            <div class="card-header bg-danger bg-gradient text-white text-center p-4 border-0">
+                <i class="bi bi-heart-pulse fs-1 mb-2"></i>
+                <h3 class="fw-bold mb-0">Tính Chỉ Số BMI</h3>
+                <p class="text-white-50 small mb-0 mt-1">Đánh giá tình trạng cơ thể theo chuẩn Châu Á</p>
+            </div>
+            <div class="card-body p-4 p-md-5">
+                <form method="POST" action="{{ url_for('bai3') }}" novalidate>
+                    <div class="row g-4 mb-4 align-items-start">
+                        <div class="col-12">
+                            <label class="form-label fw-semibold text-secondary">Chiều cao của bạn</label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light text-muted"><i class="bi bi-arrows-vertical"></i></span>
+                                <input type="text" name="height" class="form-control fs-6 {% if error_height %}is-invalid{% endif %}" placeholder="Ví dụ: 170" value="{{ height }}" autofocus>
+                                <span class="input-group-text bg-light text-muted fw-semibold">cm</span>
+                            </div>
+                            {% if error_height %}
+                                <div class="text-danger small mt-1 fw-medium">{{ error_height }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-semibold text-secondary">Cân nặng của bạn</label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light text-muted"><i class="bi bi-speedometer2"></i></span>
+                                <input type="text" name="weight" class="form-control fs-6 {% if error_weight %}is-invalid{% endif %}" placeholder="Ví dụ: 65" value="{{ weight }}">
+                                <span class="input-group-text bg-light text-muted fw-semibold">kg</span>
+                            </div>
+                            {% if error_weight %}
+                                <div class="text-danger small mt-1 fw-medium">{{ error_weight }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger w-100 fw-bold py-2 rounded-3 shadow-sm d-flex justify-content-center align-items-center gap-2">
+                        <i class="bi bi-activity"></i> Kiểm tra sức khỏe
+                    </button>
+                </form>
+                {% if result %}
+                    <div class="alert {{ alert_class }} mt-4 mb-0 rounded-3 shadow-sm border-0 border-start border-5 d-flex align-items-center gap-3 p-4">
+                        {% if 'success' in alert_class %}
+                            <i class="bi bi-emoji-smile-fill fs-2"></i>
+                        {% elif 'warning' in alert_class %}
+                            <i class="bi bi-emoji-neutral-fill fs-2"></i>
+                        {% else %}
+                            <i class="bi bi-emoji-frown-fill fs-2"></i>
+                        {% endif %}
+                        
+                        <div>
+                            <h6 class="alert-heading fw-bold mb-1">CHỈ SỐ THỂ TRỌNG (BMI)</h6>
+                            <p class="mb-0 text-dark fw-medium">{{ result }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
